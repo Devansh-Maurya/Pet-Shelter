@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf7a7bdb-2dc9-4082-87e3-823d42de2d2c" name="Default" comment="Added contract class">
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/app/src/main/java/com/example/android/myapplication/data/PetContract.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/myapplication/data/PetContract.java" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/.idea/misc.xml" afterPath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/.idea/workspace.xml" afterPath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="cf7a7bdb-2dc9-4082-87e3-823d42de2d2c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/app/src/main/java/com/example/android/myapplication/data/PetContract.java" afterPath="$USER_HOME$/AndroidStudioProjects/Pet-Shop/app/src/main/java/com/example/android/myapplication/data/PetContract.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="PetContract.java" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/AndroidStudioProjects/Pet-Shop/app/src/main/java/com/example/android/myapplication/data/PetContract.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="440">
+              <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -1935,7 +1931,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1534587986674" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1534588046928" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -1983,7 +1979,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1534587986674" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1534588046928" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2166,7 +2162,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1534587986676" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1534588046930" />
       </method>
     </configuration>
     <list size="1">
@@ -2254,8 +2250,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/AndroidStudioProjects/Pet-Shop/app/src/main/java/com/example/android/myapplication/data/PetContract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="440">
+          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
           <folding />
         </state>
       </provider>
