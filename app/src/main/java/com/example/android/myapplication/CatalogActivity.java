@@ -79,9 +79,11 @@ public class CatalogActivity extends AppCompatActivity {
         PetDbHelper mDbHelper = new PetDbHelper(this);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + PetEntry.TABLE_NAME, null);
-        try {
+        String[] projection = new String[] {PetEntry._ID};
 
+        Cursor cursor = db.query(PetEntry.TABLE_NAME, projection,
+                null, null, null, null, null);
+        try {
             TextView displayView = findViewById(R.id.text_view_pet);
             displayView.setText("Number of rows in pets database table: " + cursor.getCount());
         } finally {
