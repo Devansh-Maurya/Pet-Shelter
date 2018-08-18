@@ -1,5 +1,6 @@
 package com.example.android.myapplication;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.myapplication.data.PetContract;
 import com.example.android.myapplication.data.PetDbHelper;
 import com.example.android.myapplication.data.PetContract.PetEntry;
 
@@ -31,8 +33,26 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
-        PetDbHelper mDbHelper = new PetDbHelper(this);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        displayDatabaseInfo();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        displayDatabaseInfo();
+    }
+
+    private void insertDummyData() {
+        PetDbHelper petDbHelper = new PetDbHelper(this);
+        SQLiteDatabase db = petDbHelper.getWritableDatabase();
+
+        ContentValues dummyValues = new ContentValues();
+        dummyValues.put(PetEntry.COLUMN_PET_NAME, "Toto");
+        dummyValues.put(PetEntry.COLUMN_PET_BREED, "Terrier");
+        dummyValues.put(PetEntry.COLUMN_PET_GENDER, 1);
+        dummyValues.put(PetEntry.COLUMN_PET_WEIGHT, 7);
+
+        db.insert(PetEntry.TABLE_NAME, null, dummyValues);
     }
 
     @Override
@@ -46,6 +66,8 @@ public class CatalogActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_insert_dummy_data:
+                insertDummyData();
+                displayDatabaseInfo();
                 return true;
             case R.id.action_delete_all_entries:
                 return true;

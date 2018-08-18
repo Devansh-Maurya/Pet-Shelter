@@ -1,5 +1,7 @@
 package com.example.android.myapplication;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android.myapplication.data.PetContract.PetEntry;
+import com.example.android.myapplication.data.PetDbHelper;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -67,6 +71,37 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
+    private void insertPet() {
+        String name = mNameEditText.getText().toString().trim();
+        String breed = mBreedEditText.getText().toString().trim();
+        String weightString = mWeightEditText.getText().toString().trim();
+
+        int weight;
+        if (!weightString.equals(""))
+            weight = Integer.parseInt(weightString);
+        else
+            weight = 0;
+
+        ContentValues values = new ContentValues();
+        values.put(PetEntry.COLUMN_PET_NAME, name);
+        values.put(PetEntry.COLUMN_PET_BREED, breed);
+        values.put(PetEntry.COLUMN_PET_GENDER, mGender);
+        values.put(PetEntry.COLUMN_PET_WEIGHT, weight);
+
+        PetDbHelper petDbHelper = new PetDbHelper(this);
+        SQLiteDatabase db = petDbHelper.getWritableDatabase();
+
+        long petId = db.insert(PetEntry.TABLE_NAME, null, values);
+
+        if (petId == -1) {
+            Toast toast = Toast.makeText(this, "Error with saving text", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            Toast toast = Toast.makeText(this, "Pet saved with id: " + petId, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_editor, menu);
@@ -77,6 +112,8 @@ public class EditorActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
+                insertPet();
+                finish();
                 return  true;
             case R.id.action_delete:
                 return true;
