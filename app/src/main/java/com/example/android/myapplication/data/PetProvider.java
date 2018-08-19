@@ -52,11 +52,23 @@ public class PetProvider extends ContentProvider {
         }
     }
 
+    //if you’re sending an intent with a URI set on the data field,
+    //the Android system will check the MIME type of that URI
+    //to determine which app component on the device can best handle your request.
+    //(If the URI happens to be a content URI,
+    //then the system will check with the corresponding ContentProvider
+    //to ask for the MIME type using the getType() method.)
     @Override
     public String getType(Uri uri) {
-        // TODO: Implement this to handle requests for the MIME type of the data
-        // at the given URI.
-        throw new UnsupportedOperationException("Not yet implemented");
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case PETS:
+                return PetEntry.CONTENT_LIST_TYPE;
+            case PET_ID:
+                return PetEntry.CONTENT_LIST_TYPE;
+            default:
+                throw new IllegalStateException("Unknown uri " + uri + " with match " + match);
+        }
     }
 
     @Override
