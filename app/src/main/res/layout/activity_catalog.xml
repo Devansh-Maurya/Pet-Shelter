@@ -12,6 +12,43 @@
         android:id="@+id/list">
     </ListView>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/empty_view">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_empty_shelter"
+            android:id="@+id/empty_shelter_image"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/empty_shelter_image"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="@dimen/activity_margin"
+            android:text="@string/empty_view_title_text"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:id="@+id/empty_title_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/empty_title_text"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif"
+            android:paddingTop="@dimen/activity_margin"
+            android:text="@string/empty_view_subtitle_text"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#A2AAB0"
+            android:id="@+id/empty_subtitle_text"/>
+    </RelativeLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
