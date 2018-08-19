@@ -6,12 +6,15 @@ import android.database.Cursor;
 import android.net.Uri;
 
 public class PetProvider extends ContentProvider {
+
+    private PetDbHelper petDbHelper;
+
     public PetProvider() {
     }
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
+        petDbHelper = new PetDbHelper(getContext());
         return false;
     }
 
