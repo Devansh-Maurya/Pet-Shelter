@@ -79,13 +79,23 @@ public class CatalogActivity extends AppCompatActivity {
         PetDbHelper mDbHelper = new PetDbHelper(this);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        String[] projection = new String[] {PetEntry._ID};
-
-        Cursor cursor = db.query(PetEntry.TABLE_NAME, projection,
+        Cursor cursor = db.query(PetEntry.TABLE_NAME, null,
                 null, null, null, null, null);
         try {
             TextView displayView = findViewById(R.id.text_view_pet);
             displayView.setText("Number of rows in pets database table: " + cursor.getCount());
+            displayView.append("\n" + PetEntry._ID + " - " + PetEntry.COLUMN_PET_NAME + " - " + PetEntry.COLUMN_PET_BREED
+                + " - " + PetEntry.COLUMN_PET_GENDER + " - " + PetEntry.COLUMN_PET_WEIGHT + "\n");
+
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndex(PetEntry._ID));
+                String name = cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_NAME));
+                String breed = cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_BREED));
+                int gender = cursor.getInt(cursor.getColumnIndex(PetEntry.COLUMN_PET_GENDER));
+                int weight = cursor.getInt(cursor.getColumnIndex(PetEntry.COLUMN_PET_WEIGHT));
+
+                displayView.append(id + " - " + name + " - " + breed + " - " + gender + " - " + weight + "\n");
+            }
         } finally {
             cursor.close();
         }
