@@ -44,6 +44,9 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         cursorAdapter = new PetCursorAdapter(this, null);
         petListView.setAdapter(cursorAdapter);
 
+        View emptyView = findViewById(R.id.empty_view);
+        petListView.setEmptyView(emptyView);
+
         petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
