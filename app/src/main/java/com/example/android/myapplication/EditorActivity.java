@@ -56,6 +56,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         if (currentPetUri == null) {
             setTitle("Update pet data");
+            invalidateOptionsMenu();
         } else {
             setTitle(getString(R.string.editor_activity_title_new_pet));
             // Initialize a loader to read the pet data from the database
@@ -142,6 +143,17 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 };
         showUnsavedChangeDialog(discardButtonOnClickListener);
 
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        if (currentPetUri == null) {
+            MenuItem menuItem = menu.findItem(R.id.action_delete);
+            menuItem.setVisible(false);
+        }
+        return true;
     }
 
     private void savePet() {
