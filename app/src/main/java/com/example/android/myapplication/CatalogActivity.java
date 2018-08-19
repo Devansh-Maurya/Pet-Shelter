@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.myapplication.data.PetContract.PetEntry;
@@ -75,23 +76,8 @@ public class CatalogActivity extends AppCompatActivity {
         Cursor cursor = getContentResolver().query(PetEntry.CONTENT_URI, null, null, null,
                 null);
 
-        try {
-            TextView displayView = findViewById(R.id.text_view_pet);
-            displayView.setText("Number of rows in pets database table: " + cursor.getCount());
-            displayView.append("\n" + PetEntry._ID + " - " + PetEntry.COLUMN_PET_NAME + " - " + PetEntry.COLUMN_PET_BREED
-                + " - " + PetEntry.COLUMN_PET_GENDER + " - " + PetEntry.COLUMN_PET_WEIGHT + "\n");
-
-            while (cursor.moveToNext()) {
-                int id = cursor.getInt(cursor.getColumnIndex(PetEntry._ID));
-                String name = cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_NAME));
-                String breed = cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_BREED));
-                int gender = cursor.getInt(cursor.getColumnIndex(PetEntry.COLUMN_PET_GENDER));
-                int weight = cursor.getInt(cursor.getColumnIndex(PetEntry.COLUMN_PET_WEIGHT));
-
-                displayView.append(id + " - " + name + " - " + breed + " - " + gender + " - " + weight + "\n");
-            }
-        } finally {
-            cursor.close();
-        }
+        ListView petListView = findViewById(R.id.list);
+        PetCursorAdapter adapter = new PetCursorAdapter(this, cursor);
+        petListView.setAdapter(adapter);
     }
 }
