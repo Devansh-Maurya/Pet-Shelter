@@ -55,9 +55,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         currentPetUri = intent.getData();
 
         if (currentPetUri == null) {
-            setTitle("Add a pet");
+            setTitle("Update pet data");
         } else {
             setTitle(getString(R.string.editor_activity_title_new_pet));
+            // Initialize a loader to read the pet data from the database
+            // and display the current values in the editor
+            getLoaderManager().initLoader(EXISTING_PET_LOADER, null, this);
         }
 
         mNameEditText = findViewById(R.id.edit_pet_name);
@@ -72,7 +75,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         setupSpinner();
 
-        getLoaderManager().initLoader(EXISTING_PET_LOADER, null, this);
     }
 
     private void setupSpinner() {

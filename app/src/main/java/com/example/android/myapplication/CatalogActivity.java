@@ -50,11 +50,12 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+                //Intent name needs to be same than the previous intent, otherwise the app will crash
+                Intent updateIntent = new Intent(CatalogActivity.this, EditorActivity.class);
 
                 Uri currentPetUri = ContentUris.withAppendedId(PetEntry.CONTENT_URI, id);
-                intent.setData(currentPetUri);
-                startActivity(intent);
+                updateIntent.setData(currentPetUri);
+                startActivity(updateIntent);
             }
         });
 
