@@ -98,6 +98,22 @@ public class PetProvider extends ContentProvider {
     }
 
     private Uri insertPet(Uri uri, ContentValues values) {
+
+        String name = values.getAsString(PetEntry.COLUMN_PET_NAME);
+        if (name == null) {
+            throw new IllegalArgumentException("Pet requires a name");
+        }
+
+        Integer gender = values.getAsInteger(PetEntry.COLUMN_PET_GENDER);
+        if (gender == null || !PetEntry.isValidGender(gender)) {
+            throw new IllegalArgumentException("Pet requires valid gender");
+        }
+
+        Integer weight = values.getAsInteger(PetEntry.COLUMN_PET_WEIGHT);
+        if (weight != null && weight < 0) {
+            throw new IllegalArgumentException("Pet requires valid weight");
+        }
+
         SQLiteDatabase database = petDbHelper.getReadableDatabase();
 
         long id = database.insert(PetEntry.TABLE_NAME, null, values);

@@ -12,8 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.myapplication.data.PetContract;
-import com.example.android.myapplication.data.PetDbHelper;
 import com.example.android.myapplication.data.PetContract.PetEntry;
 
 public class CatalogActivity extends AppCompatActivity {
