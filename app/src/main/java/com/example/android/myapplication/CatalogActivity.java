@@ -43,16 +43,13 @@ public class CatalogActivity extends AppCompatActivity {
     }
 
     private void insertDummyData() {
-        PetDbHelper petDbHelper = new PetDbHelper(this);
-        SQLiteDatabase db = petDbHelper.getWritableDatabase();
-
         ContentValues dummyValues = new ContentValues();
         dummyValues.put(PetEntry.COLUMN_PET_NAME, "Toto");
         dummyValues.put(PetEntry.COLUMN_PET_BREED, "Terrier");
         dummyValues.put(PetEntry.COLUMN_PET_GENDER, 1);
         dummyValues.put(PetEntry.COLUMN_PET_WEIGHT, 7);
 
-        db.insert(PetEntry.TABLE_NAME, null, dummyValues);
+        getContentResolver().insert(PetEntry.CONTENT_URI, dummyValues);
     }
 
     @Override
@@ -79,7 +76,6 @@ public class CatalogActivity extends AppCompatActivity {
 
         Cursor cursor = getContentResolver().query(PetEntry.CONTENT_URI, null, null, null,
                 null);
-
 
         try {
             TextView displayView = findViewById(R.id.text_view_pet);

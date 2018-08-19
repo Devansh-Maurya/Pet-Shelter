@@ -7,10 +7,13 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.android.myapplication.data.PetContract.PetEntry;
 
 public class PetProvider extends ContentProvider {
+
+    private static final String LOG_TAG = PetProvider.class.getSimpleName();
 
     private static final int PETS = 100;
     private static final int PET_ID = 101;
@@ -48,8 +51,16 @@ public class PetProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+        final int match = sUriMatcher.match(uri);
+        Uri newUri;
+        switch (match) {
+            case PETS:
+                newUri = insertPet(uri, values);
+                break;
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for: " + uri);
+        }
+        return newUri;
     }
 
     @Override
@@ -84,5 +95,18 @@ public class PetProvider extends ContentProvider {
                       String[] selectionArgs) {
         // TODO: Implement this to handle requests to update one or more rows.
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private Uri insertPet(Uri uri, ContentValues values) {
+        SQLiteDatabase database = petDbHelper.getReadableDatabase();
+
+        long id = database.insert(PetEntry.TABLE_NAME, null, values);
+
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for: " + uri);
+            return null;
+        }
+
+        return ContentUris.withAppendedId(uri, id);
     }
 }

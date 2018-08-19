@@ -2,6 +2,7 @@ package com.example.android.myapplication;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -88,16 +89,13 @@ public class EditorActivity extends AppCompatActivity {
         values.put(PetEntry.COLUMN_PET_GENDER, mGender);
         values.put(PetEntry.COLUMN_PET_WEIGHT, weight);
 
-        PetDbHelper petDbHelper = new PetDbHelper(this);
-        SQLiteDatabase db = petDbHelper.getWritableDatabase();
+        Uri petUri = getContentResolver().insert(PetEntry.CONTENT_URI, values);
 
-        long petId = db.insert(PetEntry.TABLE_NAME, null, values);
-
-        if (petId == -1) {
-            Toast toast = Toast.makeText(this, "Error with saving text", Toast.LENGTH_SHORT);
+        if (petUri == null) {
+            Toast toast = Toast.makeText(this, getString(R.string.editor_insert_pet_failed), Toast.LENGTH_SHORT);
             toast.show();
         } else {
-            Toast toast = Toast.makeText(this, "Pet saved with id: " + petId, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, getString(R.string.editor_activity_title_new_pet), Toast.LENGTH_SHORT);
             toast.show();
         }
     }
