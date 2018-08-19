@@ -91,7 +91,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         });
     }
 
-    private void insertPet() {
+    private void savePet() {
         String name = mNameEditText.getText().toString().trim();
         String breed = mBreedEditText.getText().toString().trim();
         String weightString = mWeightEditText.getText().toString().trim();
@@ -108,14 +108,26 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         values.put(PetEntry.COLUMN_PET_GENDER, mGender);
         values.put(PetEntry.COLUMN_PET_WEIGHT, weight);
 
-        Uri petUri = getContentResolver().insert(PetEntry.CONTENT_URI, values);
+        if (currentPetUri == null) {
+            Uri petUri = getContentResolver().insert(PetEntry.CONTENT_URI, values);
 
-        if (petUri == null) {
-            Toast toast = Toast.makeText(this, getString(R.string.editor_insert_pet_failed), Toast.LENGTH_SHORT);
-            toast.show();
+            if (petUri == null) {
+                Toast toast = Toast.makeText(this, getString(R.string.editor_insert_pet_failed), Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                Toast toast = Toast.makeText(this, getString(R.string.editor_activity_title_new_pet), Toast.LENGTH_SHORT);
+                toast.show();
+            }
         } else {
-            Toast toast = Toast.makeText(this, getString(R.string.editor_activity_title_new_pet), Toast.LENGTH_SHORT);
-            toast.show();
+            int rowsAffected = getContentResolver().update(currentPetUri, values, null, null);
+
+            if (rowsAffected == 0) {
+                Toast toast = Toast.makeText(this, getString(R.string.editor_update_pet_failed), Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                Toast toast = Toast.makeText(this, getString(R.string.editor_update_pet_successful), Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
     }
 
@@ -129,7 +141,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                insertPet();
+                savePet();
                 finish();
                 return  true;
             case R.id.action_delete:

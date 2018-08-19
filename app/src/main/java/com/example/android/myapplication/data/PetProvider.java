@@ -173,7 +173,7 @@ public class PetProvider extends ContentProvider {
 
     private int updatePet(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-        //Directly eturn 0 if nothing is to be updated
+        //Directly return 0 if nothing is to be updated
         if (values.size() == 0) {
             return 0;
         }
