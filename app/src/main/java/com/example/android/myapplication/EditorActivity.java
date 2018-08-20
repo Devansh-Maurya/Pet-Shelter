@@ -185,7 +185,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 Toast toast = Toast.makeText(this, getString(R.string.editor_insert_pet_failed), Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                Toast toast = Toast.makeText(this, getString(R.string.editor_activity_title_new_pet), Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, getString(R.string.added_pet), Toast.LENGTH_SHORT);
                 toast.show();
             }
         } else {

@@ -103,7 +103,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.delete_dialog_msg);
+        builder.setMessage("Delete all pets ?");
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -145,7 +145,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     private void deleteAllPets() {
         int rowsDeleted = getContentResolver().delete(PetEntry.CONTENT_URI, null, null);
-        if (rowsDeleted != 0) {
+        if (rowsDeleted == 0) {
             Toast.makeText(CatalogActivity.this, getString(R.string.editor_delete_pet_failed),
                     Toast.LENGTH_SHORT).show();
         } else {
